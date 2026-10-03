@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     "Portfolio of Kiran Eegala - Final-year B.Tech CSE student & Developer specializing in Full-Stack web development, AI/ML engineering, and high-performance digital experiences.",
 
   verification: {
-    google: "google638069445fbeda38.html",
+    google: "iLW6TS13kPveFbYW771_5jKs3Zo2UHhkiPKOC_r_AsA",
   },
 
   keywords: [

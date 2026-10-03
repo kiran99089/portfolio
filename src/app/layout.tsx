@@ -32,6 +32,11 @@ export const metadata: Metadata = {
   title: "KIRAN EEGALA",
   description:
     "Portfolio of Kiran Eegala - Final-year B.Tech CSE student & Developer specializing in Full-Stack web development, AI/ML engineering, and high-performance digital experiences.",
+
+  verification: {
+    google: "YOUR_GOOGLE_VERIFICATION_TOKEN",
+  },
+
   keywords: [
     "Kiran Eegala",
     "EEGALA KIRAN",
@@ -43,7 +48,9 @@ export const metadata: Metadata = {
     "React",
     "TypeScript",
   ],
+
   authors: [{ name: "Kiran Eegala" }],
+
   openGraph: {
     title: "KIRAN EEGALA | Developer Portfolio",
     description: "Turning Ideas into Intelligent, Scalable Experiences.",
@@ -53,7 +60,6 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
-
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",

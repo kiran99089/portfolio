@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-# Cinematic Developer Portfolio — KIRAN EEGALA
+#  Developer Portfolio — KIRAN EEGALA
 
 An award-level, high-performance developer portfolio built with Next.js (App Router), TypeScript, Tailwind CSS, Three.js custom GLSL shaders, Lenis smooth scrolling, and Framer Motion.
 

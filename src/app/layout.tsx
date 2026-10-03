@@ -29,7 +29,7 @@ const fontMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "KIRAN EEGALA | Full-Stack & AI/ML Developer Portfolio",
+  title: "KIRAN EEGALA",
   description:
     "Portfolio of Kiran Eegala - Final-year B.Tech CSE student & Developer specializing in Full-Stack web development, AI/ML engineering, and high-performance digital experiences.",
   keywords: [

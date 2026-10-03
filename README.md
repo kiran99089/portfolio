@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Cinematic Developer Portfolio — KIRAN EEGALA
 
 An award-level, high-performance developer portfolio built with Next.js (App Router), TypeScript, Tailwind CSS, Three.js custom GLSL shaders, Lenis smooth scrolling, and Framer Motion.
@@ -117,3 +118,7 @@ export const portfolioData: PortfolioData = {
 
 - GitHub: [kiran99089](https://github.com/kiran99089)
 - LinkedIn: [eegalakiran](https://www.linkedin.com/in/eegalakiran/)
+=======
+# portfolio
+Cinematic developer portfolio built with Next.js, Three.js GLSL shaders, and Framer Motion, featuring an AI chatbot, command palette, terminal CLI and contact form.
+>>>>>>> 5b730ab9e914dfb57d12543df205de8f8b21bc82

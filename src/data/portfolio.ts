@@ -2,7 +2,7 @@ export interface Project {
   id: string;
   title: string;
   tagline: string;
-  category: "Web" | "AI-ML" | "Quantum";
+  category: "Web Development" | "AI-ML" | "Quantum";
   description: string;
    status?: string;
   problem: string;
@@ -220,7 +220,7 @@ projects: [
     title: "Blood Bank Management System",
     tagline:
       "A web-based system for managing blood donors, blood availability, and requests.",
-    category: "Web",
+    category: "Web Development",
     description:
       "A web-based Blood Bank Management System developed as a diploma final-year project to simplify the management of blood donors, blood groups, availability, and blood requests.",
     problem:
@@ -253,7 +253,7 @@ projects: [
     title: "Advanced Weather Application",
     tagline:
       "A responsive weather application providing real-time weather information.",
-    category: "Web",
+    category: "Web Development",
     description:
       "A responsive weather application developed during B.Tech to provide users with weather information through a clean and interactive interface.",
     problem:

@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://eegala-kiran.vercel.appp";
+  const baseUrl = "https://eegala-kiran.vercel.app";
 
   return [
     {

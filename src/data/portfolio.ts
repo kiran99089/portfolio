@@ -38,13 +38,13 @@ export interface Certification {
   credentialUrl?: string;
 }
 
-export interface Achievement {
-  id: string;
-  title: string;
-  organization: string;
-  date: string;
-  description: string;
-}
+// export interface Achievement {
+//   id: string;
+//   title: string;
+//   organization: string;
+//   date: string;
+//   description: string;
+// }
 
 export interface PortfolioData {
   personal: {
@@ -69,7 +69,7 @@ export interface PortfolioData {
   projects: Project[];
   experiences: Experience[];
   certifications: Certification[];
-  achievements: Achievement[];
+  // achievements: Achievement[];
 }
 
 export const portfolioData: PortfolioData = {
@@ -407,46 +407,51 @@ certifications: [
     title: "Web Development Internship",
     issuer: "Vinukoti Business Solutions",
     date: "2024",
+    credentialUrl: "/certificates/vinukoti.pdf",
   },
   {
     id: "cert-2",
     title: "AI & Data Science Internship",
     issuer: "Pantech Prolabs India Pvt Ltd",
     date: "2025",
+    credentialUrl: "/certificates/pantech.pdf",
   },
   {
     id: "cert-3",
     title: "Python (Basic)",
     issuer: "HackerRank",
     date: "2025",
+    credentialUrl: "/certificates/hackerrank-python.pdf",
   },
   {
     id: "cert-4",
     title: "AI Tools & ChatGPT Workshop",
     issuer: "be10x",
     date: "2025",
+    credentialUrl: "/certificates/be10x.pdf",
   },
   {
     id: "cert-5",
     title: "Java Full Stack Development Internship",
     issuer: "BlackBucks",
     date: "2025",
+    credentialUrl: "/certificates/blackbucks.pdf",
   },
 ],
-  achievements: [
-    {
-      id: "ach-1",
-      title: "National Hackathon Finalist",
-      organization: "Smart India Hackathon",
-      date: "2024",
-      description: "Built an AI-driven smart traffic monitoring prototype in 36 continuous hours, placing in the top 10 teams nationwide.",
-    },
-    {
-      id: "ach-2",
-      title: "Competitive Programming Excellence",
-      organization: "LeetCode & CodeChef",
-      date: "2023 - Present",
-      description: "Solved 500+ data structure and algorithm problems; achieved Knight rating candidate status.",
-    },
-  ],
+  // achievements: [
+  //   {
+  //     id: "ach-1",
+  //     title: "National Hackathon Finalist",
+  //     organization: "Smart India Hackathon",
+  //     date: "2024",
+  //     description: "Built an AI-driven smart traffic monitoring prototype in 36 continuous hours, placing in the top 10 teams nationwide.",
+  //   },
+  //   {
+  //     id: "ach-2",
+  //     title: "Competitive Programming Excellence",
+  //     organization: "LeetCode & CodeChef",
+  //     date: "2023 - Present",
+  //     description: "Solved 500+ data structure and algorithm problems; achieved Knight rating candidate status.",
+  //   },
+  // ],
 };

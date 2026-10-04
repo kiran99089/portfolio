@@ -89,7 +89,7 @@ export const metadata: Metadata = {
     description:
       "Portfolio of Eegala Kiran — Computer Science student and developer building modern web, AI, cloud, and software solutions.",
 
-    url: "https://portfolio-mu-taupe-49.vercel.app/",
+    url: "https://eegala-kiran.vercel.app",
 
     siteName: "Eegala Kiran Portfolio",
 
@@ -109,7 +109,7 @@ export const metadata: Metadata = {
 
   alternates: {
     canonical:
-      "https://portfolio-mu-taupe-49.vercel.app/",
+      "https://eegala-kiran.vercel.app",
   },
 };
 
@@ -129,7 +129,7 @@ const jsonLd = {
     "EEGALA KIRAN",
   ],
 
-  url: "https://portfolio-mu-taupe-49.vercel.app/",
+  url: "https://eegala-kiran.vercel.app",
 
   jobTitle: portfolioData.personal.role,
 

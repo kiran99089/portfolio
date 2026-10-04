@@ -24,7 +24,7 @@ export default function IntroReveal({
         delay: reduceMotion ? 0 : delay,
         ease: "easeOut",
       }}
-      className="flex min-h-screen w-full flex-col justify-between"
+      className="flex  w-full flex-col justify-between"
     >
       {children}
     </motion.div>

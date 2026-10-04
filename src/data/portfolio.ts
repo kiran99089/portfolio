@@ -59,9 +59,9 @@ export interface PortfolioData {
     resume: string;
     location: string;
     stats: {
-      projects: number;
-      certifications: number;
-      learningYears: number;
+      projects: String;
+      certifications: String;
+      learningYears: String;
       Technologies: string;
     };
   };
@@ -95,10 +95,10 @@ export const portfolioData: PortfolioData = {
     resume: "/EEGALA_KIRAN.pdf",
     location: "India",
     stats: {
-      projects: 4,
-      certifications: 3,
-      learningYears: 5,
-      Technologies: "20+",
+      projects: "5",
+      certifications: "4",
+      learningYears:" 4",
+      Technologies: "20",
     },
   },
   skills: [
@@ -146,6 +146,40 @@ export const portfolioData: PortfolioData = {
     },
   ],
 projects: [
+
+  {
+  id: "kiran-portfolio",
+  title: "Kiran Portfolio",
+  tagline:
+    "A modern interactive portfolio showcasing my skills, projects, experience, and journey in technology.",
+  category: "Web Development",
+  description:
+    "A modern, responsive personal portfolio designed to showcase my technical skills, projects, internships, education, and professional experience through an interactive and visually engaging interface.",
+  problem:
+    "A traditional resume does not fully demonstrate my technical skills, projects, and development experience in an interactive way.",
+  solution:
+    "Built a responsive personal portfolio with modern UI, animations, interactive sections, project showcases, and a professional presentation of my technical journey.",
+  features: [
+    "Modern responsive portfolio design",
+    "Interactive project showcase",
+    "Animated UI and transitions",
+    "Skills and technology showcase",
+    "Experience and education sections",
+    "Responsive design for desktop and mobile",
+  ],
+  techStack: [
+    "React",
+    "TypeScript",
+    "Next.js",
+    "Tailwind CSS",
+    "Framer Motion",
+    "Lucide React",
+  ],
+  image: "/projects/kiran-portfolio.png",
+  githubUrl: "https://github.com/kiran99089/portfolio",
+  liveUrl: "https://eegala-kiran.vercel.app/",
+  featured: true,
+},
   {
     id: "food-donation-ai",
     title: "AI-Powered Food Donation Platform",
@@ -239,8 +273,8 @@ projects: [
       "Weather API",
     ],
     image: "/projects/weather-app.png",
-    githubUrl: "https://github.com/kiran99089",
-    liveUrl: "https://github.com/kiran99089",
+    githubUrl: "https://github.com/kiran99089/Weather_App",
+    liveUrl: "https://aether-weatherapp.vercel.app/",
     featured: false,
   },
 

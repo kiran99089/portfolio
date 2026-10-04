@@ -181,7 +181,7 @@ export default function RootLayout({
         />
       </head>
 
-      <body className="bg-[#030308] text-slate-100 font-sans antialiased selection:bg-cyan-500/30 selection:text-cyan-200 overflow-x-hidden min-h-screen">
+      <body className="bg-[#030308] text-slate-100 font-sans antialiased selection:bg-cyan-500/30 selection:text-cyan-200 overflow-x-hidden ">
         <CustomCursor />
 
         <ScrollProgressBar />

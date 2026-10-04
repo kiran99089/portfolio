@@ -64,3 +64,23 @@ body {
 
 @keyframes robotFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
 @keyframes robotWave { 0%,60%,100% { transform: rotate(0); } 10%,30% { transform: rotate(14deg); } 20%,40% { transform: rotate(-10deg); } 50% { transform: rotate(8deg); } }
+
+/* ===== Tighter spacing between sections ===== */
+section[id] {
+  padding-top: 4rem !important;
+  padding-bottom: 4rem !important;
+}
+
+@media (min-width: 768px) {
+  section[id] {
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+  }
+}
+
+/* Hero: shorter height so there's less empty space before "About Me" */
+section#home,
+section#hero {
+  min-height: 80vh !important;
+  padding-bottom: 2rem !important;
+}

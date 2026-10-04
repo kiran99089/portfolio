@@ -153,11 +153,16 @@ export default function Footer() {
             © {new Date().getFullYear()} {name}. All rights reserved.
           </p>
 
-          <p className="flex items-center gap-2">
-            <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
-            Open to opportunities
-          </p>
+<div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 backdrop-blur-md shadow-[0_0_25px_rgba(16,185,129,0.08)]">
+  <span className="relative flex h-2.5 w-2.5">
+    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
+    <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.9)]" />
+  </span>
 
+  <span className="text-sm font-medium tracking-wide text-white/90">
+    Open to new opportunities
+  </span>
+</div>
           <button
             onClick={scrollToTop}
             className="group flex items-center gap-2 rounded-full border border-slate-800 bg-slate-900 px-3 py-1.5 font-mono text-xs text-slate-300 transition-all hover:border-cyan-500/40 hover:text-white"

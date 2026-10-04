@@ -12,7 +12,7 @@ import IntroReveal from "@/components/IntroReveal";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen w-full selection:bg-cyan-500/30 selection:text-cyan-200">
+    <div className="relative  w-full selection:bg-cyan-500/30 selection:text-cyan-200">
       <IntroReveal>
         {/* Floating Glass Pill Navbar */}
         <Navbar />

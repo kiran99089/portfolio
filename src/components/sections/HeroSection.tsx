@@ -99,7 +99,7 @@ export default function HeroSection() {
       onPointerLeave={() => {
         activeRef.current = false;
       }}
-      className="relative min-h-screen w-full flex flex-col justify-center items-center px-5 md:px-8 pt-28 pb-16 overflow-hidden"
+      className="relative  w-full flex flex-col justify-center items-center px-5 md:px-8 pt-28 pb-16 overflow-hidden"
     >
       {/* Soft background glows */}
       <div className="absolute top-1/3 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-600/15 rounded-full blur-[120px] pointer-events-none" />

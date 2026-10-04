@@ -39,6 +39,10 @@ export const metadata: Metadata = {
   description:
     "Eegala Kiran is a final-year B.Tech Computer Science student and developer passionate about Full-Stack Development, AI/ML, Cloud, and DevOps.",
 
+  verification: {
+    google: "iLW6TS13kPveFbYW771_5jKs3Zo2UHhkiPKOC_r_AsA",
+  },
+
   keywords: [
     "Eegala Kiran",
     "Kiran Eegala",
@@ -66,13 +70,10 @@ export const metadata: Metadata = {
   creator: "Eegala Kiran",
   publisher: "Eegala Kiran",
 
-  verification: {
-    google: "iLW6TS13kPveFbYW771_5jKs3Zo2UHhkiPKOC_r_AsA",
-  },
-
   robots: {
     index: true,
     follow: true,
+
     googleBot: {
       index: true,
       follow: true,
@@ -107,7 +108,8 @@ export const metadata: Metadata = {
   },
 
   alternates: {
-    canonical: "https://kiran-portfolio-git-main-kiran-41e4.vercel.app/",
+    canonical:
+      "https://kiran-portfolio-git-main-kiran-41e4.vercel.app/",
   },
 };
 
@@ -180,23 +182,18 @@ export default function RootLayout({
       </head>
 
       <body className="bg-[#030308] text-slate-100 font-sans antialiased selection:bg-cyan-500/30 selection:text-cyan-200 overflow-x-hidden min-h-screen">
-        {/* Custom Cursor */}
         <CustomCursor />
 
-        {/* Scroll Progress */}
         <ScrollProgressBar />
 
-        {/* Command Palette */}
         <CommandPalette />
 
-        {/* Terminal Overlay */}
         <TerminalOverlay />
 
         <SmoothScrollProvider>
           {/* Fixed GLSL Galaxy Background */}
           <DynamicGalaxyCanvas />
 
-          {/* Main Application */}
           {children}
         </SmoothScrollProvider>
       </body>

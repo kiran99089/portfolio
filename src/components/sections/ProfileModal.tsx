@@ -31,6 +31,7 @@ const education = [
   { degree: "Diploma in Computer Engineering", institute: "Government Polytechnic College, Rebaka, Anakapalli", status: "Completed", score: "79.4%", link: "https://govtpolyanakapalli.ac.in/" },
   { degree: "10th Grade — Secondary School Education", institute: "Zilla Parishath High School, Anandapuram", status: "Completed", score: "550 / 600", link: "https://schools.org.in/" },
 ];
+
 interface ExperienceItem {
   role: string;
   company: string;
@@ -46,11 +47,13 @@ const experience: ExperienceItem[] = [
   { role: "Web Development & Cloud Integration Intern", company: "SkillDzire" },
   { role: "Java Full Stack Development Intern", company: "BlackBucks" },
 ];
+
 const softSkills = [
   { name: "Time Management", desc: "Balances multiple projects and deadlines effectively" },
   { name: "Decision Making", desc: "Analyzes situations to make well-informed decisions" },
   { name: "Problem Solving", desc: "Tackles complex coding and debugging challenges with ease" },
 ];
+
 const strengths = [
   { label: "Quick Learner", desc: "Picks up new technologies rapidly" },
   { label: "Adaptability", desc: "Adjusts to new tools and environments" },
@@ -61,17 +64,20 @@ const strengths = [
   { label: "Continuous Learning", desc: "Consistently improves technical skills" },
   { label: "Positive Attitude", desc: "Stays open to feedback, learns from mistakes" },
 ];
+
 const hobbies = [
   { emoji: "🎵", title: "Singing", desc: "Enjoys singing as a way to express creativity and unwind." },
   { emoji: "💻", title: "Learning New Technologies", desc: "Constantly exploring new frameworks, tools, and trends in tech." },
   { emoji: "🌿", title: "Exploring Nature & Travelling", desc: "Loves discovering new places and spending time outdoors." },
 ];
+
 const focusAreas = [
   { label: "Full-Stack Development", color: V },
   { label: "AI / Machine Learning", color: C },
   { label: "Data Science", color: G },
   { label: "Cloud & DevOps", color: A },
 ];
+
 const TABS = [
   { id: "about", label: "About", icon: User },
   { id: "education", label: "Education", icon: GraduationCap },
@@ -127,13 +133,11 @@ function TabContent({ tab }: { tab: string }) {
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
         <p style={{ fontSize: "clamp(16px, 1.5vw, 20px)", lineHeight: 1.65, color: "#f1f5f9", fontWeight: 500, margin: 0, letterSpacing: "-0.01em" }}>{lead}</p>
-
         <div className="pm-paras">
           {rest.map((para, i) => (
             <p key={i} style={{ ...cardStyle, margin: 0, padding: "16px 18px", fontSize: 13.5, color: "#94a3b8", lineHeight: 1.75, fontWeight: 300, borderLeft: `3px solid ${LINE[i % 4]}88`, borderRadius: 14 }}>{para}</p>
           ))}
         </div>
-
         <div>
           <Label color={C}>FOCUS AREAS</Label>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
@@ -142,7 +146,6 @@ function TabContent({ tab }: { tab: string }) {
             ))}
           </div>
         </div>
-
         <div>
           <Label color={V}>AT A GLANCE</Label>
           <div className="pm-stats">
@@ -198,10 +201,10 @@ function TabContent({ tab }: { tab: string }) {
               <span style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "4px 12px", borderRadius: 999, border: "1px solid rgba(251,191,36,.35)", background: "rgba(251,191,36,.08)", color: "#fbbf24", fontSize: 11, fontWeight: 600 }}><Award style={{ width: 11, height: 11 }} />Featured</span>
             </div>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 6 }}>
-              {exp.points.map((p: string, k: number) => <li key={k} style={{ display: "flex", gap: 8, fontSize: 13, color: "#cbd5e1", lineHeight: 1.6 }}><span style={{ color: V }}>▸</span><span>{p}</span></li>)}
+              {exp.points?.map((p: string, k: number) => <li key={k} style={{ display: "flex", gap: 8, fontSize: 13, color: "#cbd5e1", lineHeight: 1.6 }}><span style={{ color: V }}>▸</span><span>{p}</span></li>)}
             </ul>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-              {exp.tags.map((t: string) => <span key={t} style={{ padding: "3px 10px", borderRadius: 999, border: `1px solid ${V}44`, background: `${V}12`, color: "#c4b5fd", fontSize: 11 }}>{t}</span>)}
+              {exp.tags?.map((t: string) => <span key={t} style={{ padding: "3px 10px", borderRadius: 999, border: `1px solid ${V}44`, background: `${V}12`, color: "#c4b5fd", fontSize: 11 }}>{t}</span>)}
             </div>
           </div>
         );
@@ -289,11 +292,11 @@ export default function ProfileModal({ onClose }: { onClose: () => void }) {
   if (!mounted) return null;
 
   const p: any = portfolioData.personal;
-const socials = [
-  p.github && { href: p.github, label: "GitHub", icon: GithubIcon, color: "#e2e8f0" },
-  p.linkedin && { href: p.linkedin, label: "LinkedIn", icon: LinkedinIcon, color: "#38bdf8" },
-  p.email && { href: `mailto:${p.email}`, label: "Email", icon: Mail, color: A },
-].filter(Boolean) as { href: string; label: string; icon: any; color: string }[];
+  const socials = [
+    p.github && { href: p.github, label: "GitHub", icon: GithubIcon, color: "#e2e8f0" },
+    p.linkedin && { href: p.linkedin, label: "LinkedIn", icon: LinkedinIcon, color: "#38bdf8" },
+    p.email && { href: `mailto:${p.email}`, label: "Email", icon: Mail, color: A },
+  ].filter(Boolean) as { href: string; label: string; icon: any; color: string }[];
 
   const infoRows = [
     { icon: GraduationCap, k: "Degree", v: "B.Tech CSE — Final Year", c: V },
@@ -309,16 +312,44 @@ const socials = [
       style={{ position: "fixed", inset: 0, zIndex: 99999, display: "flex", alignItems: "center", justifyContent: "center", padding: "clamp(.5rem,3vw,2rem)", backgroundColor: "rgba(3,3,8,.88)", backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)" }}
     >
       <style>{`
-        .pm-modal { position: relative; width: 100%; max-width: 62rem; height: min(700px, 90vh); border-radius: 28px; background: #080814; border: 1px solid rgba(255,255,255,.1); overflow: hidden; display: grid; grid-template-columns: 300px minmax(0, 1fr); }
+        .pm-modal {
+          position: relative; width: 100%; max-width: 62rem;
+          height: min(700px, 90vh); border-radius: 28px;
+          background: #080814; border: 1px solid rgba(255,255,255,.1);
+          overflow: hidden; display: grid;
+          grid-template-columns: 260px minmax(0, 1fr);
+        }
         @supports (height: 100dvh) { .pm-modal { height: min(700px, 90dvh); } }
 
-        .pm-left { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 16px; padding: 18px; border-right: 1px solid rgba(255,255,255,.07); background: linear-gradient(180deg, rgba(139,92,246,.12), rgba(6,182,212,.05) 55%, rgba(8,8,20,0)); overflow-y: auto; }
-        .pm-photo { position: relative; width: 100%; aspect-ratio: 4 / 4.6; border-radius: 20px; overflow: hidden; flex-shrink: 0; background: #050510; border: 1px solid rgba(255,255,255,.12); box-shadow: 0 18px 40px -16px rgba(0,0,0,.8), 0 0 40px -16px ${V}99; }
-        .pm-overlay { position: absolute; left: 0; right: 0; bottom: 0; padding: 56px 16px 14px; background: linear-gradient(transparent, rgba(5,5,16,.94)); }
-        .pm-open-chip { position: absolute; top: 12px; left: 12px; display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 999px; background: rgba(5,5,20,.78); border: 1px solid ${G}55; font-family: monospace; font-size: 10px; font-weight: 700; color: ${G}; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+        .pm-left {
+          position: relative; z-index: 1; display: flex; flex-direction: column;
+          align-items: center; gap: 16px; padding: 28px 18px 18px;
+          border-right: 1px solid rgba(255,255,255,.07);
+          background: linear-gradient(180deg, rgba(139,92,246,.10), rgba(6,182,212,.04) 55%, rgba(8,8,20,0));
+          overflow-y: auto;
+        }
+
+        /* ── circular profile photo ── */
+        .pm-photo-wrap {
+          position: relative;
+          width: 100px; height: 100px; flex-shrink: 0;
+          border-radius: 50%;
+          /* cyan/blue gradient border only */
+          padding: 3px;
+          background: linear-gradient(135deg, #06b6d4, #3b82f6, #8b5cf6);
+          box-shadow: 0 0 20px rgba(6,182,212,.35), 0 0 40px rgba(59,130,246,.2);
+        }
+        .pm-photo-inner {
+          width: 100%; height: 100%;
+          border-radius: 50%; overflow: hidden;
+          background: #050510;
+          position: relative;
+        }
+
+        .pm-name-block { text-align: center; }
         .pm-mobile-id { display: none; }
-        .pm-info { display: flex; flex-direction: column; gap: 12px; padding: 14px 16px; border-radius: 16px; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07); }
-        .pm-social { display: flex; gap: 10px; }
+        .pm-info { display: flex; flex-direction: column; gap: 12px; padding: 14px 16px; border-radius: 16px; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07); width: 100%; }
+        .pm-social { display: flex; gap: 10px; width: 100%; }
 
         .pm-right { position: relative; z-index: 1; display: flex; flex-direction: column; min-width: 0; min-height: 0; }
         .pm-tabbar { padding: 18px 64px 0 28px; flex-shrink: 0; }
@@ -336,8 +367,8 @@ const socials = [
           .pm-modal { grid-template-columns: 1fr; grid-template-rows: auto minmax(0, 1fr); height: 92vh; border-radius: 22px; }
           @supports (height: 100dvh) { .pm-modal { height: 92dvh; } }
           .pm-left { flex-direction: row; align-items: center; gap: 14px; padding: 14px 56px 14px 16px; border-right: none; border-bottom: 1px solid rgba(255,255,255,.07); overflow: visible; }
-          .pm-photo { width: 62px; height: 62px; aspect-ratio: auto; border-radius: 50%; }
-          .pm-overlay, .pm-open-chip, .pm-info, .pm-social { display: none; }
+          .pm-photo-wrap { width: 56px; height: 56px; padding: 2px; }
+          .pm-name-block, .pm-info, .pm-social { display: none; }
           .pm-mobile-id { display: block; min-width: 0; }
           .pm-tabbar { padding: 12px 16px 0; }
           .pm-tab { padding: 8px 13px; }
@@ -369,16 +400,25 @@ const socials = [
 
         {/* ───────── LEFT: ID CARD ───────── */}
         <aside className="pm-left">
-          <div className="pm-photo">
-            <Image src="/images/profile.jpeg" alt={p.name} fill unoptimized sizes="300px" style={{ objectFit: "cover", objectPosition: "top" }} />
-            <span className="pm-open-chip">
-              <motion.span animate={{ opacity: [1, .25, 1] }} transition={{ repeat: Infinity, duration: 1.3 }} style={{ width: 6, height: 6, borderRadius: "50%", background: G, boxShadow: `0 0 8px ${G}`, display: "block" }} />
-              OPEN TO WORK
-            </span>
-            <div className="pm-overlay">
-              <p style={{ margin: 0, fontSize: 21, fontWeight: 900, color: "#fff", letterSpacing: "-0.02em" }}>{p.name}</p>
-              <p style={{ margin: "4px 0 0", fontSize: 11, fontFamily: "monospace", color: C }}>Full-Stack · AI · Data Science</p>
+
+          {/* circular photo with cyan-blue border only */}
+          <div className="pm-photo-wrap">
+            <div className="pm-photo-inner">
+              <Image
+                src="/images/profile.jpeg"
+                alt={p.name}
+                fill
+                unoptimized
+                sizes="100px"
+                style={{ objectFit: "cover", objectPosition: "top" }}
+              />
             </div>
+          </div>
+
+          {/* name below photo — desktop */}
+          <div className="pm-name-block">
+            <p style={{ margin: 0, fontSize: 17, fontWeight: 800, color: "#fff", letterSpacing: "-0.02em" }}>{p.name}</p>
+            <p style={{ margin: "4px 0 0", fontSize: 11, fontFamily: "monospace", color: C }}>Full-Stack · AI · Data Science</p>
           </div>
 
           {/* mobile-only name */}

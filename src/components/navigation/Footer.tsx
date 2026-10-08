@@ -1,16 +1,87 @@
 "use client";
 
 import React from "react";
-import { ArrowUp, Mail } from "lucide-react";
+import {
+  ArrowUp,
+  Mail,
+  User,
+  Wrench,
+  FolderKanban,
+  Briefcase,
+  FileText,
+  Send,
+  Compass,
+  FolderOpen,
+  MessageCircle,
+} from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/SocialIcons";
 import { portfolioData } from "@/data/portfolio";
 
-const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Experience", href: "#experience" },
+const V = "#8b5cf6", C = "#06b6d4", G = "#10b981", A = "#f59e0b", P = "#f472b6", B = "#3b82f6";
+
+type IconType = React.ComponentType<{ className?: string; style?: React.CSSProperties }>;
+
+const navLinks: { label: string; href: string; icon: IconType; color: string }[] = [
+  { label: "About", href: "#about", icon: User, color: V },
+  { label: "Skills", href: "#skills", icon: Wrench, color: C },
+  { label: "Projects", href: "#projects", icon: FolderKanban, color: G },
+  { label: "Experience", href: "#experience", icon: Briefcase, color: A },
 ];
+
+/* One footer link with a coloured icon box */
+function FooterLink({
+  href,
+  icon: Icon,
+  color,
+  children,
+  external,
+  breakAll,
+}: {
+  href: string;
+  icon: IconType;
+  color: string;
+  children: React.ReactNode;
+  external?: boolean;
+  breakAll?: boolean;
+}) {
+  return (
+    <a
+      href={href}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      className="group flex items-center gap-3 text-lg text-slate-300 transition-colors hover:text-white"
+    >
+      <span
+        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:scale-110"
+        style={{
+          background: `${color}14`,
+          border: `1px solid ${color}40`,
+          boxShadow: `0 0 0 0 ${color}00`,
+        }}
+      >
+        <Icon className="h-[18px] w-[18px]" style={{ color }} />
+      </span>
+      <span className={breakAll ? "min-w-0 break-all" : ""}>{children}</span>
+    </a>
+  );
+}
+
+/* Section heading with icon */
+function FooterHeading({
+  icon: Icon,
+  color,
+  children,
+}: {
+  icon: IconType;
+  color: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <h4 className="mb-6 flex items-center gap-2.5 font-mono text-xs font-bold uppercase tracking-[0.3em] text-slate-500">
+      <Icon className="h-4 w-4" style={{ color }} />
+      {children}
+    </h4>
+  );
+}
 
 export default function Footer() {
   const { name, github, linkedin, email } = portfolioData.personal;
@@ -25,11 +96,6 @@ export default function Footer() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
-  const headingClass =
-    "mb-6 font-mono text-xs font-bold uppercase tracking-[0.3em] text-slate-500";
-  const linkClass =
-    "text-lg text-slate-300 transition-colors hover:text-white";
 
   return (
     <footer className="relative mt-24 overflow-hidden border-t border-white/10 bg-gradient-to-b from-transparent via-black/20 to-black/60">
@@ -49,13 +115,14 @@ export default function Footer() {
               Final-year CSE student building high-performance web apps and
               intelligent AI-driven solutions.
             </p>
-            <div className="flex items-center gap-4 text-slate-400">
+            <div className="flex items-center gap-3">
               <a
                 href={github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-colors hover:text-cyan-300"
                 title="GitHub"
+                className="flex h-10 w-10 items-center justify-center rounded-xl text-slate-300 transition-all hover:-translate-y-0.5 hover:text-white"
+                style={{ background: "rgba(226,232,240,.08)", border: "1px solid rgba(226,232,240,.2)" }}
               >
                 <GithubIcon className="h-5 w-5" />
               </a>
@@ -63,15 +130,17 @@ export default function Footer() {
                 href={linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-colors hover:text-cyan-300"
                 title="LinkedIn"
+                className="flex h-10 w-10 items-center justify-center rounded-xl transition-all hover:-translate-y-0.5"
+                style={{ background: `${B}14`, border: `1px solid ${B}40`, color: "#60a5fa" }}
               >
                 <LinkedinIcon className="h-5 w-5" />
               </a>
               <a
                 href={`mailto:${email}`}
-                className="transition-colors hover:text-cyan-300"
                 title="Email"
+                className="flex h-10 w-10 items-center justify-center rounded-xl transition-all hover:-translate-y-0.5"
+                style={{ background: `${P}14`, border: `1px solid ${P}40`, color: P }}
               >
                 <Mail className="h-5 w-5" />
               </a>
@@ -80,13 +149,13 @@ export default function Footer() {
 
           {/* Navigate */}
           <div>
-            <h4 className={headingClass}>Navigate</h4>
+            <FooterHeading icon={Compass} color={V}>Navigate</FooterHeading>
             <ul className="space-y-4">
               {navLinks.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className={linkClass}>
+                  <FooterLink href={link.href} icon={link.icon} color={link.color}>
                     {link.label}
-                  </a>
+                  </FooterLink>
                 </li>
               ))}
             </ul>
@@ -94,54 +163,49 @@ export default function Footer() {
 
           {/* Resources */}
           <div>
-            <h4 className={headingClass}>Resources</h4>
+            <FooterHeading icon={FolderOpen} color={C}>Resources</FooterHeading>
             <ul className="space-y-4">
               <li>
-                <a
-                  href="/EEGALA_KIRAN.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={linkClass}
-                >
+                <FooterLink href="/EEGALA_KIRAN.pdf" icon={FileText} color={C} external>
                   Resume
-                </a>
+                </FooterLink>
               </li>
               <li>
-                <a href="#contact" className={linkClass}>
+                <FooterLink href="#contact" icon={Send} color={G}>
                   Hire Me
-                </a>
+                </FooterLink>
               </li>
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <h4 className={headingClass}>Contact</h4>
+            <FooterHeading icon={MessageCircle} color={G}>Contact</FooterHeading>
             <ul className="space-y-4">
               <li>
-                <a href={`mailto:${email}`} className={`${linkClass} break-all`}>
+                <FooterLink href={`mailto:${email}`} icon={Mail} color={P} breakAll>
                   {email}
-                </a>
+                </FooterLink>
               </li>
               <li>
-                <a
+                <FooterLink
                   href={github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={linkClass}
+                  icon={({ className, style }) => <GithubIcon className={className} />}
+                  color="#e2e8f0"
+                  external
                 >
                   GitHub
-                </a>
+                </FooterLink>
               </li>
               <li>
-                <a
+                <FooterLink
                   href={linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={linkClass}
+                  icon={({ className, style }) => <LinkedinIcon className={className} />}
+                  color="#60a5fa"
+                  external
                 >
                   LinkedIn
-                </a>
+                </FooterLink>
               </li>
             </ul>
           </div>
@@ -153,16 +217,16 @@ export default function Footer() {
             © {new Date().getFullYear()} {name}. All rights reserved.
           </p>
 
-<div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 backdrop-blur-md shadow-[0_0_25px_rgba(16,185,129,0.08)]">
-  <span className="relative flex h-2.5 w-2.5">
-    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
-    <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.9)]" />
-  </span>
+          <div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 backdrop-blur-md shadow-[0_0_25px_rgba(16,185,129,0.08)]">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.9)]" />
+            </span>
+            <span className="text-sm font-medium tracking-wide text-white/90">
+              Open to new opportunities
+            </span>
+          </div>
 
-  <span className="text-sm font-medium tracking-wide text-white/90">
-    Open to new opportunities
-  </span>
-</div>
           <button
             onClick={scrollToTop}
             className="group flex items-center gap-2 rounded-full border border-slate-800 bg-slate-900 px-3 py-1.5 font-mono text-xs text-slate-300 transition-all hover:border-cyan-500/40 hover:text-white"

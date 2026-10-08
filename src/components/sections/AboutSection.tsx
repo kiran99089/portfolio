@@ -35,7 +35,7 @@ function GlitchText({ text, style }: { text: string; style?: React.CSSProperties
 }
 
 /* ════════════════════════════════════════════════════════
-   SCAN LINE PHOTO
+   CIRCULAR PHOTO (no scan line, no stripes, no brackets)
 ════════════════════════════════════════════════════════ */
 function ScanPhoto() {
   const ref = useRef<HTMLDivElement>(null);
@@ -44,81 +44,78 @@ function ScanPhoto() {
   useEffect(() => { if (inView) setTimeout(() => setRevealed(true), 300); }, [inView]);
 
   return (
-    <div ref={ref} style={{ position: "relative", width: "100%", maxWidth: 360, margin: "0 auto" }}>
-      {/* outer glow frame */}
-      <div style={{
-        position: "absolute", inset: -2,
-        background: `linear-gradient(135deg, ${V}, ${C}, ${G}, ${V})`,
-        borderRadius: 24,
-        backgroundSize: "300% 300%",
-        animation: "gradShift 4s ease infinite",
-        zIndex: 0,
-      }} />
-
+    <div ref={ref} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 22, width: "100%" }}>
       <style>{`
-        @keyframes gradShift { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
-        @keyframes scanDown { 0%{top:0%} 100%{top:100%} }
+        @keyframes ringSpin { to { transform: rotate(360deg); } }
       `}</style>
 
-      {/* photo box */}
-      <div style={{ position: "relative", zIndex: 1, borderRadius: 22, overflow: "hidden", background: "#050510" }}>
+      <div style={{ position: "relative", width: "100%", maxWidth: 340, aspectRatio: "1 / 1" }}>
+        {/* circle + animated border */}
+        <div style={{
+          position: "absolute", inset: 0, borderRadius: "50%", overflow: "hidden",
+          boxShadow: `0 0 40px ${V}59, 0 0 90px ${C}33`,
+        }}>
+          {/* spinning gradient ring */}
+          <div style={{
+            position: "absolute", inset: "-50%",
+            background: `conic-gradient(from 0deg, ${V}, ${C}, ${G}, ${V})`,
+            animation: "ringSpin 6s linear infinite",
+          }} />
+
+          {/* photo (inset 5px = border thickness) */}
+          <motion.div
+            initial={{ clipPath: "circle(0% at 50% 50%)" }}
+            animate={revealed ? { clipPath: "circle(75% at 50% 50%)" } : {}}
+            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+            style={{ position: "absolute", inset: 5, borderRadius: "50%", overflow: "hidden", background: "#050510" }}
+          >
+            <Image
+              src="/images/profile.jpeg"
+              alt={portfolioData.personal.name}
+              fill
+              unoptimized
+              sizes="340px"
+              style={{ objectFit: "cover", objectPosition: "center 15%" }}
+            />
+          </motion.div>
+        </div>
+
+        {/* floating badge: OPEN TO WORK */}
         <motion.div
-          initial={{ clipPath: "inset(0 0 100% 0)" }}
-          animate={revealed ? { clipPath: "inset(0 0 0% 0)" } : {}}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          style={{ position: "relative", aspectRatio: "3/4" }}
-        >
-          <Image src="/images/profile.jpeg" alt={portfolioData.personal.name} fill unoptimized sizes="(max-width: 900px) 90vw, 360px" style={{ objectFit: "cover", objectPosition: "top" }} />
-
-          {/* scanline texture */}
-          <div style={{ position: "absolute", inset: 0, backgroundImage: "repeating-linear-gradient(0deg,rgba(0,0,0,.0) 0px,rgba(0,0,0,.0) 2px,rgba(0,0,0,.06) 2px,rgba(0,0,0,.06) 4px)", pointerEvents: "none" }} />
-
-          {/* scan beam */}
-          {revealed && (
-            <div style={{ position: "absolute", left: 0, right: 0, height: 3, background: `linear-gradient(90deg, transparent, ${C}cc, transparent)`, animation: "scanDown 2.5s linear infinite", animationDelay: "0.5s", pointerEvents: "none" }} />
-          )}
-
-          {/* bottom name overlay */}
-          <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "48px 20px 20px", background: "linear-gradient(transparent, rgba(5,5,16,.95))" }}>
-            <p style={{ fontSize: 22, fontWeight: 900, color: "#fff", letterSpacing: "-0.02em" }}>{portfolioData.personal.name}</p>
-            <p style={{ fontSize: 11, fontFamily: "monospace", color: C, marginTop: 4 }}>Full-Stack · AI · Data Science</p>
+          className="ab-badge-open"
+          initial={{ opacity: 0, x: 30, y: -10 }}
+          animate={revealed ? { opacity: 1, x: 0, y: 0 } : {}}
+          transition={{ delay: 1.2, type: "spring", stiffness: 200 }}
+          style={{ position: "absolute", background: "rgba(5,5,20,.92)", border: `1px solid ${G}55`, borderRadius: 14, padding: "12px 16px", backdropFilter: "blur(16px)", zIndex: 20 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
+            <motion.div animate={{ opacity: [1, .2, 1] }} transition={{ repeat: Infinity, duration: 1.3 }} style={{ width: 7, height: 7, borderRadius: "50%", background: G, boxShadow: `0 0 8px ${G}` }} />
+            <span style={{ fontSize: 11, fontFamily: "monospace", color: G, fontWeight: 700 }}>OPEN TO WORK</span>
           </div>
         </motion.div>
 
-        {/* corner brackets */}
-        {[["top","left"],["top","right"],["bottom","left"],["bottom","right"]].map(([v,h], i) => (
-          <div key={i} style={{ position: "absolute", [v]: 10, [h]: 10, width: 18, height: 18,
-            borderTop: v === "top" ? `2px solid ${C}` : "none",
-            borderBottom: v === "bottom" ? `2px solid ${C}` : "none",
-            borderLeft: h === "left" ? `2px solid ${C}` : "none",
-            borderRight: h === "right" ? `2px solid ${C}` : "none",
-            zIndex: 10,
-          }} />
-        ))}
+        {/* floating badge: PROJECTS */}
+        <motion.div
+          className="ab-badge-proj"
+          initial={{ opacity: 0, x: -30, y: 10 }}
+          animate={revealed ? { opacity: 1, x: 0, y: 0 } : {}}
+          transition={{ delay: 1.4, type: "spring", stiffness: 200 }}
+          style={{ position: "absolute", background: "rgba(5,5,20,.92)", border: `1px solid ${V}55`, borderRadius: 14, padding: "12px 16px", backdropFilter: "blur(16px)", zIndex: 20 }}>
+          <p style={{ fontSize: 22, fontWeight: 900, color: V, lineHeight: 1, margin: 0 }}>{portfolioData.personal.stats.projects}+</p>
+          <p style={{ fontSize: 10, fontFamily: "monospace", color: "#64748b", marginTop: 2, marginBottom: 0 }}>PROJECTS</p>
+        </motion.div>
       </div>
 
-      {/* floating badge — OPEN TO WORK */}
+      {/* name below the circle */}
       <motion.div
-        className="ab-badge-open"
-        initial={{ opacity: 0, x: 30, y: -10 }}
-        animate={revealed ? { opacity: 1, x: 0, y: 0 } : {}}
-        transition={{ delay: 1.4, type: "spring", stiffness: 200 }}
-        style={{ position: "absolute", background: "rgba(5,5,20,.92)", border: `1px solid ${G}55`, borderRadius: 14, padding: "12px 16px", backdropFilter: "blur(16px)", zIndex: 20 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
-          <motion.div animate={{ opacity: [1, .2, 1] }} transition={{ repeat: Infinity, duration: 1.3 }} style={{ width: 7, height: 7, borderRadius: "50%", background: G, boxShadow: `0 0 8px ${G}` }} />
-          <span style={{ fontSize: 11, fontFamily: "monospace", color: G, fontWeight: 700 }}>OPEN TO WORK</span>
-        </div>
-      </motion.div>
-
-      {/* floating badge — PROJECTS */}
-      <motion.div
-        className="ab-badge-proj"
-        initial={{ opacity: 0, x: -30, y: 10 }}
-        animate={revealed ? { opacity: 1, x: 0, y: 0 } : {}}
-        transition={{ delay: 1.6, type: "spring", stiffness: 200 }}
-        style={{ position: "absolute", background: "rgba(5,5,20,.92)", border: `1px solid ${V}55`, borderRadius: 14, padding: "12px 16px", backdropFilter: "blur(16px)", zIndex: 20 }}>
-        <p style={{ fontSize: 22, fontWeight: 900, color: V, lineHeight: 1 }}>{portfolioData.personal.stats.projects}+</p>
-        <p style={{ fontSize: 10, fontFamily: "monospace", color: "#64748b", marginTop: 2 }}>PROJECTS</p>
+        initial={{ opacity: 0, y: 10 }}
+        animate={revealed ? { opacity: 1, y: 0 } : {}}
+        transition={{ delay: 0.8 }}
+        style={{ textAlign: "center" }}
+      >
+        <p style={{ margin: 0, fontSize: "clamp(22px, 2.6vw, 30px)", fontWeight: 900, color: "#fff", letterSpacing: "0.02em" }}>
+          {portfolioData.personal.name.toUpperCase()}
+        </p>
+        <p style={{ margin: "6px 0 0", fontSize: 12, fontFamily: "monospace", color: C }}>Full-Stack · AI · Data Science</p>
       </motion.div>
     </div>
   );
@@ -185,7 +182,7 @@ function SplitHeading({ text, gradient }: { text: string; gradient?: boolean }) 
             ...(gradient ? { background: "linear-gradient(135deg,#fff 30%,#8b5cf6)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" } : { color: "#fff" }),
             whiteSpace: ch === " " ? "pre" : "normal",
           }}
-        >{ch === " " ? " " : ch}</motion.span>
+        >{ch === " " ? "\u00A0" : ch}</motion.span>
       ))}
     </span>
   );
@@ -216,8 +213,8 @@ export default function AboutSection() {
         .ab-lead { font-size: clamp(14px, 1.3vw, 16px); color: #64748b; line-height: 1.85; max-width: 440px; margin: 28px 0 40px; }
         .ab-btn { align-self: flex-start; }
         .ab-photo-col { display: flex; justify-content: center; padding-left: 20px; min-width: 0; }
-        .ab-badge-open { top: 12%; right: -18%; }
-        .ab-badge-proj { bottom: 18%; left: -16%; }
+        .ab-badge-open { top: 8%; right: -10%; }
+        .ab-badge-proj { bottom: 10%; left: -10%; }
 
         .ab-stats { display: grid; grid-template-columns: repeat(4, 1fr); }
         .ab-stat-cell { border-right: 1px solid rgba(255,255,255,.05); }
@@ -233,8 +230,8 @@ export default function AboutSection() {
           .ab-h2 { font-size: clamp(40px, 12vw, 64px); }
           .ab-lead { max-width: 100%; margin: 22px 0 30px; }
           .ab-photo-col { padding-left: 0; }
-          .ab-badge-open { top: 8%; right: 8px; }
-          .ab-badge-proj { bottom: 16%; left: 8px; }
+          .ab-badge-open { top: 4%; right: 0; }
+          .ab-badge-proj { bottom: 6%; left: 0; }
 
           .ab-stats { grid-template-columns: repeat(2, 1fr); }
           .ab-stat-cell:nth-child(2n) { border-right: none; }
@@ -315,7 +312,7 @@ export default function AboutSection() {
               </motion.button>
             </div>
 
-            {/* RIGHT — scan photo */}
+            {/* RIGHT — circular photo */}
             <motion.div className="ab-photo-col" initial={{ opacity: 0, scale: .9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: .9, ease: [0.16, 1, 0.3, 1], delay: .3 }}>
               <ScanPhoto />
             </motion.div>

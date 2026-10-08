@@ -59,9 +59,9 @@ export interface PortfolioData {
     resume: string;
     location: string;
     stats: {
-      projects: String;
-      certifications: String;
-      learningYears: String;
+      projects: string;
+      certifications: string;
+      learningYears: string;
       Technologies: string;
     };
   };
@@ -96,8 +96,8 @@ export const portfolioData: PortfolioData = {
     location: "India",
     stats: {
       projects: "5",
-      certifications: "4",
-      learningYears:" 4",
+      certifications: "4+",
+      learningYears:"4+",
       Technologies: "20",
     },
   },

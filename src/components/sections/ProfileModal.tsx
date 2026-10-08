@@ -31,7 +31,16 @@ const education = [
   { degree: "Diploma in Computer Engineering", institute: "Government Polytechnic College, Rebaka, Anakapalli", status: "Completed", score: "79.4%", link: "https://govtpolyanakapalli.ac.in/" },
   { degree: "10th Grade — Secondary School Education", institute: "Zilla Parishath High School, Anandapuram", status: "Completed", score: "550 / 600", link: "https://schools.org.in/" },
 ];
-const experience: any[] = [
+interface ExperienceItem {
+  role: string;
+  company: string;
+  featured?: boolean;
+  duration?: string;
+  points?: string[];
+  tags?: string[];
+}
+
+const experience: ExperienceItem[] = [
   { featured: true, role: "Full-Stack Developer Intern", company: "Vinukoti Business Solutions", duration: "6 months · During Diploma", points: ["Worked on real-world web applications: RecruitUs and Campus Connect", "Built and maintained both frontend and backend features"], tags: ["Full-Stack", "Frontend", "Backend", "RecruitUs", "Campus Connect"] },
   { role: "AI & Data Science Intern", company: "Pantech Prolabs India Pvt Ltd" },
   { role: "Web Development & Cloud Integration Intern", company: "SkillDzire" },
@@ -111,8 +120,8 @@ function TabContent({ tab }: { tab: string }) {
     const s = portfolioData.personal.stats;
     const stats = [
       { label: "PROJECTS", value: `${s.projects}+`, color: V },
-      { label: "CERTS", value: `${s.certifications}`, color: C },
-      { label: "YEARS", value: `${s.learningYears}`, color: G },
+      { label: "certifications", value: `${s.certifications}`, color: C },
+      { label: "Years Non-industry Technical experience", value: `${s.learningYears}`, color: G },
       { label: "TECH STACK", value: `${s.Technologies}+`, color: A },
     ];
     return (
@@ -361,7 +370,7 @@ const socials = [
         {/* ───────── LEFT: ID CARD ───────── */}
         <aside className="pm-left">
           <div className="pm-photo">
-            <Image src="/images/profile.jpg" alt={p.name} fill unoptimized sizes="300px" style={{ objectFit: "cover", objectPosition: "top" }} />
+            <Image src="/images/profile.jpeg" alt={p.name} fill unoptimized sizes="300px" style={{ objectFit: "cover", objectPosition: "top" }} />
             <span className="pm-open-chip">
               <motion.span animate={{ opacity: [1, .25, 1] }} transition={{ repeat: Infinity, duration: 1.3 }} style={{ width: 6, height: 6, borderRadius: "50%", background: G, boxShadow: `0 0 8px ${G}`, display: "block" }} />
               OPEN TO WORK

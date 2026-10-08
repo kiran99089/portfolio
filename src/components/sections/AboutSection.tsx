@@ -68,7 +68,7 @@ function ScanPhoto() {
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           style={{ position: "relative", aspectRatio: "3/4" }}
         >
-          <Image src="/images/profile.jpg" alt={portfolioData.personal.name} fill unoptimized sizes="(max-width: 900px) 90vw, 360px" style={{ objectFit: "cover", objectPosition: "top" }} />
+          <Image src="/images/profile.jpeg" alt={portfolioData.personal.name} fill unoptimized sizes="(max-width: 900px) 90vw, 360px" style={{ objectFit: "cover", objectPosition: "top" }} />
 
           {/* scanline texture */}
           <div style={{ position: "absolute", inset: 0, backgroundImage: "repeating-linear-gradient(0deg,rgba(0,0,0,.0) 0px,rgba(0,0,0,.0) 2px,rgba(0,0,0,.06) 2px,rgba(0,0,0,.06) 4px)", pointerEvents: "none" }} />
@@ -127,7 +127,15 @@ function ScanPhoto() {
 /* ════════════════════════════════════════════════════════
    ANIMATED STAT
 ════════════════════════════════════════════════════════ */
-function AnimStat({ value, suffix, label, color, idx }: any) {
+interface AnimStatProps {
+  value: number | string;
+  suffix: string;
+  label: string;
+  color: string;
+  idx: number;
+}
+
+function AnimStat({ value, suffix, label, color, idx }: AnimStatProps) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { amount: 0.5 });
   const raw = String(value);
@@ -191,8 +199,8 @@ export default function AboutSection() {
 
   const stats = [
     { label: "Projects", value: portfolioData.personal.stats.projects, suffix: "+", color: V },
-    { label: "Certifications", value: portfolioData.personal.stats.certifications, suffix: "+", color: C },
-    { label: "Non Industrial coding ", value: portfolioData.personal.stats.learningYears, suffix: "+", color: G },
+    { label: "Certifications", value: portfolioData.personal.stats.certifications, suffix: "", color: C },
+    { label: "Years of Non-Industrial Coding", value: portfolioData.personal.stats.learningYears, suffix: "", color: G },
     { label: "Tech Stack", value: portfolioData.personal.stats.Technologies, suffix: "+", color: A },
   ];
   const lead: string = portfolioData.personal.bio[0];
